@@ -3,7 +3,6 @@ package com.fastcampus.projectboard.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -11,7 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
@@ -25,7 +24,7 @@ public class Article extends AuditingFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter @ManyToOne(optional = false)
+    @Setter @ManyToOne(optional = false) @JoinColumn(name = "userId")
     private UserAccount userAccount;
 
     @Setter @Column(nullable = false)
@@ -37,7 +36,7 @@ public class Article extends AuditingFields {
     private String hashtag; // 해시태그
 
     @ToString.Exclude
-    @OrderBy("id")
+    @OrderBy("createdAt DESC")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 

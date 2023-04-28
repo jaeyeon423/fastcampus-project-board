@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Table(indexes = {
         @Index(columnList = "content"),
         @Index(columnList = "createdAt"),
@@ -23,7 +23,7 @@ public class ArticleComment extends AuditingFields {
 
     @Setter @ManyToOne(optional = false)
     private Article article; // 게시글 (ID)
-    @Setter @ManyToOne(optional = false)
+    @Setter @ManyToOne(optional = false) @JoinColumn(name = "userId")
     private UserAccount userAccount; // 유저 정보 (ID)
     @Setter @Column(nullable = false, length = 500)
     private String content; // 본문
