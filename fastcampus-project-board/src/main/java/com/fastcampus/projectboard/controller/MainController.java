@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class MainController {
+public class  MainController {
 
     @GetMapping
     public String root(){
-        return "forward:/articles";
+        return "redirect:/articles";
     }
 }
