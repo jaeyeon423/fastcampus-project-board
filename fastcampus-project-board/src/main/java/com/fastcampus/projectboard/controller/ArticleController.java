@@ -1,7 +1,9 @@
 package com.fastcampus.projectboard.controller;
 
-import com.fastcampus.projectboard.domain.type.SearchType;
-import com.fastcampus.projectboard.dto.ArticleDto;
+import com.fastcampus.projectboard.domain.constant.FormStatus;
+import com.fastcampus.projectboard.domain.constant.SearchType;
+import com.fastcampus.projectboard.dto.UserAccountDto;
+import com.fastcampus.projectboard.dto.request.ArticleRequest;
 import com.fastcampus.projectboard.dto.response.ArticleResponse;
 import com.fastcampus.projectboard.dto.response.ArticleWithCommentsResponse;
 import com.fastcampus.projectboard.service.ArticleService;
@@ -13,10 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,11 +46,27 @@ public class ArticleController {
 
     @GetMapping("/{articleId}")
     public String article(@PathVariable Long articleId, ModelMap map){
-        ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleService.getArticle(articleId));
+        ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleService.getArticleWithComments(articleId));
         map.addAttribute("article", article);
         map.addAttribute("articleComments", article.articleCommentsResponse());
         map.addAttribute("totalCount", articleService.getArticleCount());
 
         return "articles/detail";
+    }
+
+    @GetMapping("/form")
+    public String articleForm(ModelMap map){
+        map.addAttribute("fromStatus", FormStatus.CREATE);
+
+        return "articles/form";
+    }
+
+    @PostMapping("/form")
+    public String postNewArticle(ArticleRequest articleRequest){
+        articleService.saveArticle(articleRequest.toDto(UserAccountDto.of(
+                "uno", "asdf1234", "j@naver.com", "ubi", "memo", null, null, null, null
+        )));
+
+        return "redirect:/articles";
     }
 }

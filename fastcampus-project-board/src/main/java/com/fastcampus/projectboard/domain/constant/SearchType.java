@@ -1,4 +1,4 @@
-package com.fastcampus.projectboard.domain.type;
+package com.fastcampus.projectboard.domain.constant;
 
 public enum SearchType {
     TITLE, CONTENT, ID, NICKNAME, HASHTAG

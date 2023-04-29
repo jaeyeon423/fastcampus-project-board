@@ -1,10 +1,12 @@
 package com.fastcampus.projectboard.service;
 
 import com.fastcampus.projectboard.domain.Article;
-import com.fastcampus.projectboard.domain.type.SearchType;
+import com.fastcampus.projectboard.domain.UserAccount;
+import com.fastcampus.projectboard.domain.constant.SearchType;
 import com.fastcampus.projectboard.dto.ArticleDto;
 import com.fastcampus.projectboard.dto.ArticleWithCommentsDto;
 import com.fastcampus.projectboard.repository.ArticleRepository;
+import com.fastcampus.projectboard.repository.UserAccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,7 @@ import javax.persistence.EntityNotFoundException;
 public class ArticleService {
 
     private final ArticleRepository articleRepository;
+    private final UserAccountRepository userAccountRepository;
 
     @Transactional(readOnly = true)
     public Page<ArticleDto> searchArticles(SearchType searchType, String searchKeyword, Pageable pageable){
@@ -38,19 +41,27 @@ public class ArticleService {
     }
 
     @Transactional(readOnly = true)
-    public ArticleWithCommentsDto getArticle(Long articleId){
-        return articleRepository.findById(articleId).map(ArticleWithCommentsDto::from).orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다."));
+    public ArticleWithCommentsDto getArticleWithComments(Long articleId) {
+        return articleRepository.findById(articleId)
+                .map(ArticleWithCommentsDto::from)
+                .orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다 - articleId: " + articleId));
+    }
+
+    @Transactional(readOnly = true)
+    public ArticleDto getArticle(Long articleId){
+        return articleRepository.findById(articleId).map(ArticleDto::from).orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다."));
 
     }
 
     public void saveArticle(ArticleDto articleDto){
-        articleRepository.save(articleDto.toEntity());
+        UserAccount userAccount = userAccountRepository.getReferenceById(articleDto.userAccountDto().userId());
+        articleRepository.save(articleDto.toEntity(userAccount));
     }
 
-    public void updateArticle(ArticleDto articleDto){
+    public void updateArticle(Long articleId, ArticleDto articleDto){
 
         try {
-            Article article = articleRepository.getReferenceById(articleDto.id());
+            Article article = articleRepository.getReferenceById(articleId);
             if(articleDto.title() != null) {
                 article.setTitle(articleDto.title());
             }
