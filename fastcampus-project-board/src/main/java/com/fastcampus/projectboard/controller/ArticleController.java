@@ -69,4 +69,30 @@ public class ArticleController {
 
         return "redirect:/articles";
     }
+
+    @GetMapping("/{articleId}/form")
+    public String updateArticleForm(@PathVariable Long articleId, ModelMap map){
+        ArticleResponse article = ArticleResponse.from(articleService.getArticle(articleId));
+
+        map.addAttribute("article", article);
+        map.addAttribute("formStatus", FormStatus.UPDATE);
+
+        return "articles/form";
+    }
+    @PostMapping ("/{articleId}/form")
+    public String updateArticle(@PathVariable Long articleId, ArticleRequest articleRequest) {
+        // TODO: 인증 정보를 넣어줘야 한다.
+        articleService.updateArticle(articleId, articleRequest.toDto(UserAccountDto.of(
+                "uno", "asdf1234", "uno@mail.com", "Uno", "memo", null, null, null, null
+        )));
+
+        return "redirect:/articles/" + articleId;
+    }
+
+    @PostMapping("/{articleId}/delete")
+    public String deleteArticle(@PathVariable Long articleId){
+        articleService.deleteArticle(articleId);
+
+        return "redirect:/articles";
+    }
 }

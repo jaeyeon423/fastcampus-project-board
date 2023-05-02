@@ -60,6 +60,11 @@ public class ArticleService {
 
     public void updateArticle(Long articleId, ArticleDto articleDto){
 
+        Long id = articleDto.id();
+
+        log.info("articleId = {}", articleId);
+        log.info("update id = {}", id);
+
         try {
             Article article = articleRepository.getReferenceById(articleId);
             if(articleDto.title() != null) {
