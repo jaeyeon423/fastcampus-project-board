@@ -37,6 +37,9 @@ dependencies {
 
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
+
     // queryDSL 설정
     implementation "com.querydsl:querydsl-jpa"
     implementation "com.querydsl:querydsl-core"

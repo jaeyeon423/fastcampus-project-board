@@ -4,5 +4,10 @@ insert into user_account (user_id, user_password, nickname, email, memo, created
     ('uno', '{noop}asdf1234', 'Uno', 'uno@mail.com', 'I am Uno.', now(), 'uno', now(), 'uno')
 ;
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
-    ('kim423', '{noop}asdf1234', 'jaeyeon', 'kim423@mail.com', 'I am JaeYeon.', now(), 'uno2', now(), 'uno2')
+    ('kim423', '{noop}asdf1234', 'jaeyeon', 'uno2@mail.com', 'I am jaeyeon.', now(), 'kim423', now(), 'kim423')
+;
+
+-- 123 게시글
+insert into article (user_id, title, content, hashtag, created_by, modified_by, created_at, modified_at) values
+    ('kim423', 'where is the love', '사랑은 어디에 있나', '#love', 'Kamilah', 'Murial', '2021-05-30 23:53:46', '2021-03-10 08:48:50')
 ;

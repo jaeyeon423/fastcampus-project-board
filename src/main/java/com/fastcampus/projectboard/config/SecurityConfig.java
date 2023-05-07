@@ -26,7 +26,8 @@ public class SecurityConfig {
                                 HttpMethod.GET,
                                 "/",
                                 "/articles",
-                                "articles/search-hashtag"
+                                "articles/search-hashtag",
+                                "/articles/{articleId}"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
