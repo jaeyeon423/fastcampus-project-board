@@ -2,6 +2,11 @@
 <thlogic>
     <attr sel="#home" th:href="@{/}" />
     <attr sel="#hashtag" th:href="@{/articles/search-hashtag}" />
+    <attr sel="#humor" th:href="@{/articles(searchType='HASHTAG', searchValue='humor')}" />
+    <attr sel="#korcel" th:href="@{/articles(searchType='HASHTAG', searchValue='korcel')}" />
+    <attr sel="#forcel" th:href="@{/articles(searchType='HASHTAG', searchValue='forcel')}" />
+    <attr sel="#consulting" th:href="@{/articles(searchType='HASHTAG', searchValue='consulting')}" />
+    <attr sel="#question" th:href="@{/articles(searchType='HASHTAG', searchValue='question')}" />
     <attr sel="#username" sec:authorize="isAuthenticated()" sec:authentication="name" />
     <attr sel="#login" sec:authorize="!isAuthenticated()" th:href="@{/login}" />
     <attr sel="#logout" sec:authorize="isAuthenticated()" th:href="@{/logout}" />

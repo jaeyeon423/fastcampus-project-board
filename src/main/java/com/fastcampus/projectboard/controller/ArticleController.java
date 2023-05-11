@@ -10,6 +10,7 @@ import com.fastcampus.projectboard.dto.security.BoardPrincipal;
 import com.fastcampus.projectboard.service.ArticleService;
 import com.fastcampus.projectboard.service.PaginationService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,6 +25,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/articles")
 @RequiredArgsConstructor
+@Slf4j
 public class ArticleController {
 
     private final ArticleService articleService;
@@ -35,6 +37,9 @@ public class ArticleController {
             @RequestParam(required = false) String searchValue,
             @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
             ModelMap map){
+
+        log.info("[jaeyeon] searchType = {}", searchType);
+        log.info("[jaeyeon] searchValue = {}", searchValue);
 
         Page<ArticleResponse> articles = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
         List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articles.getTotalPages());
@@ -49,6 +54,10 @@ public class ArticleController {
     @GetMapping("/{articleId}")
     public String article(@PathVariable Long articleId, ModelMap map){
         ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleService.getArticleWithComments(articleId));
+
+        String hashtag = article.hashtag();
+
+        log.info("[jaeyeon] hashtag = {}", hashtag);
         map.addAttribute("article", article);
         map.addAttribute("articleComments", article.articleCommentsResponse());
         map.addAttribute("totalCount", articleService.getArticleCount());
