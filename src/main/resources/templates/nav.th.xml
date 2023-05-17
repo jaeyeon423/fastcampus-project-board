@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#strawberry" th:href="@{/articles(searchType='CATEGORY', searchValue='strawberry')}" />
+    <attr sel="#lettuce" th:href="@{/articles(searchType='CATEGORY', searchValue='lettuce')}" />
+    <attr sel="#grape" th:href="@{/articles(searchType='CATEGORY', searchValue='grape')}" />
+
+    <attr sel="#gyung-gi" th:href="@{/articles(searchType='REGION', searchValue='gyung-gi')}" />
+    <attr sel="#gang-won" th:href="@{/articles(searchType='REGION', searchValue='gang-won')}" />
+    <attr sel="#chung-cheong" th:href="@{/articles(searchType='REGION', searchValue='chung-cheong')}" />
+    <attr sel="#gyung-sang" th:href="@{/articles(searchType='REGION', searchValue='gyung-sang')}" />
+    <attr sel="#jeon-ra" th:href="@{/articles(searchType='REGION', searchValue='jeon-ra')}" />
+</thlogic>

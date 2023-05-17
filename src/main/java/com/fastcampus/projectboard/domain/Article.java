@@ -35,6 +35,12 @@ public class Article extends AuditingFields {
     @Setter
     private String hashtag; // 해시태그
 
+    @Setter
+    private String category;
+
+    @Setter
+    private String region;
+
     @ToString.Exclude
     @OrderBy("createdAt DESC")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
@@ -43,15 +49,17 @@ public class Article extends AuditingFields {
 
     protected Article() {}
 
-    private Article(UserAccount userAccount, String title, String content, String hashtag) {
+    private Article(UserAccount userAccount, String title, String content, String hashtag, String category, String region) {
         this.userAccount = userAccount;
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
+        this.category = category;
+        this.region = region;
     }
 
-    public static Article of(UserAccount userAccount, String title, String content, String hashtag) {
-        return new Article(userAccount, title, content, hashtag);
+    public static Article of(UserAccount userAccount, String title, String content, String hashtag, String category, String region) {
+        return new Article(userAccount, title, content, hashtag, category, region);
     }
 
     @Override

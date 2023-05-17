@@ -6,11 +6,13 @@ import com.fastcampus.projectboard.dto.UserAccountDto;
 public record ArticleRequest(
         String title,
         String content,
-        String hashtag
+        String hashtag,
+        String category,
+        String region
 ) {
 
-    public static ArticleRequest of(String title, String content, String hashtag) {
-        return new ArticleRequest(title, content, hashtag);
+    public static ArticleRequest of(String title, String content, String hashtag, String category, String region) {
+        return new ArticleRequest(title, content, hashtag, category, region);
     }
 
     public ArticleDto toDto(UserAccountDto userAccountDto) {
@@ -18,7 +20,9 @@ public record ArticleRequest(
                 userAccountDto,
                 title,
                 content,
-                hashtag
+                hashtag,
+                category,
+                region
         );
     }
 

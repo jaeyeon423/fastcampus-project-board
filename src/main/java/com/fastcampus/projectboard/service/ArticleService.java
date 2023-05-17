@@ -37,6 +37,8 @@ public class ArticleService {
             case ID -> articleRepository.findByUserAccount_UserIdContaining(searchKeyword, pageable).map(ArticleDto::from);
             case NICKNAME -> articleRepository.findByUserAccount_NicknameContaining(searchKeyword, pageable).map(ArticleDto::from);
             case HASHTAG -> articleRepository.findByHashtagContaining(searchKeyword, pageable).map(ArticleDto::from);
+            case CATEGORY -> articleRepository.findByCategoryContaining(searchKeyword, pageable).map(ArticleDto::from);
+            case REGION -> articleRepository.findByRegionContaining(searchKeyword, pageable).map(ArticleDto::from);
         };
     }
 

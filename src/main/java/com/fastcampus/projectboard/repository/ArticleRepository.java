@@ -24,6 +24,10 @@ public interface ArticleRepository extends
     Page<Article> findByUserAccount_NicknameContaining(String nickname, Pageable pageable);
     Page<Article> findByHashtagContaining(String hashtag, Pageable pageable);
 
+    Page<Article> findByCategoryContaining(String category, Pageable pageable);
+
+    Page<Article> findByRegionContaining(String region, Pageable pageable);
+
     void deleteByIdAndUserAccount_UserId(Long articleId, String userid);
 
     @Override
