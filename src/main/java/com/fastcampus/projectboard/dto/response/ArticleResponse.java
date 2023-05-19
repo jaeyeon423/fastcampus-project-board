@@ -10,12 +10,13 @@ public record ArticleResponse(
         String title,
         String content,
         String hashtag,
-        LocalDateTime createdAt,
+        String createdAt,
         String email,
         String nickname
 ) {
     public static ArticleResponse of(Long id, String title, String content, String hashtag, LocalDateTime createdAt, String email, String nickname){
-        return new ArticleResponse(id, title, content, hashtag, createdAt, email, nickname);
+        String date = createdAt.toString().split("T")[0];
+        return new ArticleResponse(id, title, content, hashtag, date, email, nickname);
     }
 
     public static ArticleResponse from(ArticleDto dto){
@@ -24,12 +25,14 @@ public record ArticleResponse(
             nickname = dto.userAccountDto().userId();
         }
 
+        String date = dto.createdAt().toString().split("T")[0];
+
         return new ArticleResponse(
                 dto.id(),
                 dto.title(),
                 dto.content(),
                 dto.hashtag(),
-                dto.createdAt(),
+                date,
                 dto.userAccountDto().email(),
                 nickname
         );

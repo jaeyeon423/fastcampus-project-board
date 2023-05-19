@@ -44,9 +44,35 @@ public class ArticleController {
         Page<ArticleResponse> articles = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
         List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articles.getTotalPages());
 
+        searchType = SearchType.CATEGORY;
+
+        searchValue = "humor";
+        Page<ArticleResponse> humors = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
+
+        searchValue = "politics";
+        Page<ArticleResponse> politics = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
+
+        searchValue = "economy";
+        Page<ArticleResponse> economy = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
+
+        searchValue = "society";
+        Page<ArticleResponse> society = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
+
+        searchValue = "sports";
+        Page<ArticleResponse> sports = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
+
+        searchValue = "entertainer";
+        Page<ArticleResponse> entertainer = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
 
         map.addAttribute("articles", articles);
         map.addAttribute("paginationBarNumbers", barNumbers);
+        
+        map.addAttribute("humors", humors);
+        map.addAttribute("politics", politics);
+        map.addAttribute("society", society);
+        map.addAttribute("economy", economy);
+        map.addAttribute("sports", sports);
+        map.addAttribute("entertainer", entertainer);
 
         return "articles/index";
     }

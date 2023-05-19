@@ -38,8 +38,6 @@ public class Article extends AuditingFields {
     @Setter
     private String category;
 
-    @Setter
-    private String region;
 
     @ToString.Exclude
     @OrderBy("createdAt DESC")
@@ -49,17 +47,16 @@ public class Article extends AuditingFields {
 
     protected Article() {}
 
-    private Article(UserAccount userAccount, String title, String content, String hashtag, String category, String region) {
+    private Article(UserAccount userAccount, String title, String content, String hashtag, String category) {
         this.userAccount = userAccount;
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
         this.category = category;
-        this.region = region;
     }
 
-    public static Article of(UserAccount userAccount, String title, String content, String hashtag, String category, String region) {
-        return new Article(userAccount, title, content, hashtag, category, region);
+    public static Article of(UserAccount userAccount, String title, String content, String hashtag, String category) {
+        return new Article(userAccount, title, content, hashtag, category);
     }
 
     @Override

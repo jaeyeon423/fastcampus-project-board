@@ -1,12 +1,9 @@
 <?xml version="1.0"?>
 <thlogic>
-    <attr sel="#strawberry" th:href="@{/articles(searchType='CATEGORY', searchValue='strawberry')}" />
-    <attr sel="#lettuce" th:href="@{/articles(searchType='CATEGORY', searchValue='lettuce')}" />
-    <attr sel="#grape" th:href="@{/articles(searchType='CATEGORY', searchValue='grape')}" />
-
-    <attr sel="#gyung-gi" th:href="@{/articles(searchType='REGION', searchValue='gyung-gi')}" />
-    <attr sel="#gang-won" th:href="@{/articles(searchType='REGION', searchValue='gang-won')}" />
-    <attr sel="#chung-cheong" th:href="@{/articles(searchType='REGION', searchValue='chung-cheong')}" />
-    <attr sel="#gyung-sang" th:href="@{/articles(searchType='REGION', searchValue='gyung-sang')}" />
-    <attr sel="#jeon-ra" th:href="@{/articles(searchType='REGION', searchValue='jeon-ra')}" />
+    <attr sel="#humor" th:href="@{/articles(searchType='CATEGORY', searchValue='humor')}" />
+    <attr sel="#politics" th:href="@{/articles(searchType='CATEGORY', searchValue='politics')}" />
+    <attr sel="#economy" th:href="@{/articles(searchType='CATEGORY', searchValue='economy')}" />
+    <attr sel="#society" th:href="@{/articles(searchType='CATEGORY', searchValue='society')}" />
+    <attr sel="#sports" th:href="@{/articles(searchType='CATEGORY', searchValue='sports')}" />
+    <attr sel="#entertainer" th:href="@{/articles(searchType='CATEGORY', searchValue='entertainer')}" />
 </thlogic>

@@ -26,8 +26,6 @@ public interface ArticleRepository extends
 
     Page<Article> findByCategoryContaining(String category, Pageable pageable);
 
-    Page<Article> findByRegionContaining(String region, Pageable pageable);
-
     void deleteByIdAndUserAccount_UserId(Long articleId, String userid);
 
     @Override

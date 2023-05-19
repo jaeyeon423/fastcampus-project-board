@@ -7,12 +7,11 @@ public record ArticleRequest(
         String title,
         String content,
         String hashtag,
-        String category,
-        String region
+        String category
 ) {
 
-    public static ArticleRequest of(String title, String content, String hashtag, String category, String region) {
-        return new ArticleRequest(title, content, hashtag, category, region);
+    public static ArticleRequest of(String title, String content, String hashtag, String category) {
+        return new ArticleRequest(title, content, hashtag, category);
     }
 
     public ArticleDto toDto(UserAccountDto userAccountDto) {
@@ -21,8 +20,7 @@ public record ArticleRequest(
                 title,
                 content,
                 hashtag,
-                category,
-                region
+                category
         );
     }
 

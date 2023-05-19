@@ -12,18 +12,17 @@ public record ArticleDto(
         String content,
         String hashtag,
         String category,
-        String region,
         LocalDateTime createdAt,
         String createdBy,
         LocalDateTime modifiedAt,
         String modifiedBy
 ) {
-    public static ArticleDto of(UserAccountDto userAccountDto, String title, String content, String hashtag, String category, String region) {
-        return new ArticleDto(null, userAccountDto, title, content, hashtag,category, region, null, null, null, null);
+    public static ArticleDto of(UserAccountDto userAccountDto, String title, String content, String hashtag, String category) {
+        return new ArticleDto(null, userAccountDto, title, content, hashtag,category, null, null, null, null);
     }
 
-    public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String hashtag, String category, String region, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
-        return new ArticleDto(id, userAccountDto, title, content, hashtag, category, region, createdAt, createdBy, modifiedAt, modifiedBy);
+    public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String hashtag, String category, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+        return new ArticleDto(id, userAccountDto, title, content, hashtag, category,  createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
     public static ArticleDto from(Article entity) {
@@ -34,7 +33,6 @@ public record ArticleDto(
                 entity.getContent(),
                 entity.getHashtag(),
                 entity.getCategory(),
-                entity.getRegion(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
                 entity.getModifiedAt(),
@@ -48,8 +46,7 @@ public record ArticleDto(
                 title,
                 content,
                 hashtag,
-                category,
-                region
+                category
         );
     }
 
