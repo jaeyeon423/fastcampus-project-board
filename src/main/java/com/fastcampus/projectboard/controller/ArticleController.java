@@ -66,7 +66,7 @@ public class ArticleController {
 
         map.addAttribute("articles", articles);
         map.addAttribute("paginationBarNumbers", barNumbers);
-        
+
         map.addAttribute("humors", humors);
         map.addAttribute("politics", politics);
         map.addAttribute("society", society);
@@ -77,13 +77,30 @@ public class ArticleController {
         return "articles/index";
     }
 
+    @GetMapping("/list")
+    public String article_list(
+            @RequestParam(required = false) SearchType searchType,
+            @RequestParam(required = false) String searchValue,
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+            ModelMap map){
+
+        log.info("[jaeyeon - list] searchType = {}", searchType);
+        log.info("[jaeyeon - list] searchValue = {}", searchValue);
+
+        Page<ArticleResponse> articles = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
+        List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articles.getTotalPages());
+
+
+        map.addAttribute("articles", articles);
+        map.addAttribute("paginationBarNumbers", barNumbers);
+
+        return "articles/list";
+    }
+
     @GetMapping("/{articleId}")
     public String article(@PathVariable Long articleId, ModelMap map){
         ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleService.getArticleWithComments(articleId));
 
-        String hashtag = article.hashtag();
-
-        log.info("[jaeyeon] hashtag = {}", hashtag);
         map.addAttribute("article", article);
         map.addAttribute("articleComments", article.articleCommentsResponse());
         map.addAttribute("totalCount", articleService.getArticleCount());

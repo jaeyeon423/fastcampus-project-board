@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <thlogic>
-    <attr sel="#humor" th:href="@{/articles(searchType='CATEGORY', searchValue='humor')}" />
-    <attr sel="#politics" th:href="@{/articles(searchType='CATEGORY', searchValue='politics')}" />
-    <attr sel="#economy" th:href="@{/articles(searchType='CATEGORY', searchValue='economy')}" />
-    <attr sel="#society" th:href="@{/articles(searchType='CATEGORY', searchValue='society')}" />
-    <attr sel="#sports" th:href="@{/articles(searchType='CATEGORY', searchValue='sports')}" />
-    <attr sel="#entertainer" th:href="@{/articles(searchType='CATEGORY', searchValue='entertainer')}" />
+    <attr sel="#humor" th:href="@{/articles/list(searchType='CATEGORY', searchValue='humor')}" />
+    <attr sel="#politics" th:href="@{/articles/list(searchType='CATEGORY', searchValue='politics')}" />
+    <attr sel="#economy" th:href="@{/articles/list(searchType='CATEGORY', searchValue='economy')}" />
+    <attr sel="#society" th:href="@{/articles/list(searchType='CATEGORY', searchValue='society')}" />
+    <attr sel="#sports" th:href="@{/articles/list(searchType='CATEGORY', searchValue='sports')}" />
+    <attr sel="#entertainer" th:href="@{/articles/list(searchType='CATEGORY', searchValue='entertainer')}" />
 </thlogic>

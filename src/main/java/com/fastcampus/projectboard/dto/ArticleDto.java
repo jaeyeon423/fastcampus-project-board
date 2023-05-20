@@ -10,19 +10,18 @@ public record ArticleDto(
         UserAccountDto userAccountDto,
         String title,
         String content,
-        String hashtag,
         String category,
         LocalDateTime createdAt,
         String createdBy,
         LocalDateTime modifiedAt,
         String modifiedBy
 ) {
-    public static ArticleDto of(UserAccountDto userAccountDto, String title, String content, String hashtag, String category) {
-        return new ArticleDto(null, userAccountDto, title, content, hashtag,category, null, null, null, null);
+    public static ArticleDto of(UserAccountDto userAccountDto, String title, String content, String category) {
+        return new ArticleDto(null, userAccountDto, title, content, category, null, null, null, null);
     }
 
-    public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String hashtag, String category, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
-        return new ArticleDto(id, userAccountDto, title, content, hashtag, category,  createdAt, createdBy, modifiedAt, modifiedBy);
+    public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String category, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+        return new ArticleDto(id, userAccountDto, title, content, category,  createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
     public static ArticleDto from(Article entity) {
@@ -31,7 +30,6 @@ public record ArticleDto(
                 UserAccountDto.from(entity.getUserAccount()),
                 entity.getTitle(),
                 entity.getContent(),
-                entity.getHashtag(),
                 entity.getCategory(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
@@ -45,7 +43,6 @@ public record ArticleDto(
                 userAccount,
                 title,
                 content,
-                hashtag,
                 category
         );
     }

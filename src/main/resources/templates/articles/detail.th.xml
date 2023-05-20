@@ -8,7 +8,6 @@
         <attr sel="#nickname" th:text="${article.nickname}" />
         <attr sel="#email" th:text="${article.email}" />
         <attr sel="#created-at" th:datetime="${article.createdAt}" th:text="${article.#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}" />
-        <attr sel="#hashtag" th:text="${article.hashtag}" />
         <attr sel="#article-content/pre" th:text="${article.content}" />
     </attr>
 

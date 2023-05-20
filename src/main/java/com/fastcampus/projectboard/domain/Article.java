@@ -13,7 +13,6 @@ import java.util.Set;
 @ToString(callSuper = true)
 @Table(indexes = {
         @Index(columnList = "title"),
-        @Index(columnList = "hashtag"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
@@ -31,10 +30,6 @@ public class Article extends AuditingFields {
     private String title; // 제목
     @Setter @Column(nullable = false, length = 10000)
     private String content; // 본문
-
-    @Setter
-    private String hashtag; // 해시태그
-
     @Setter
     private String category;
 
@@ -47,16 +42,15 @@ public class Article extends AuditingFields {
 
     protected Article() {}
 
-    private Article(UserAccount userAccount, String title, String content, String hashtag, String category) {
+    private Article(UserAccount userAccount, String title, String content, String category) {
         this.userAccount = userAccount;
         this.title = title;
         this.content = content;
-        this.hashtag = hashtag;
         this.category = category;
     }
 
-    public static Article of(UserAccount userAccount, String title, String content, String hashtag, String category) {
-        return new Article(userAccount, title, content, hashtag, category);
+    public static Article of(UserAccount userAccount, String title, String content, String category) {
+        return new Article(userAccount, title, content, category);
     }
 
     @Override

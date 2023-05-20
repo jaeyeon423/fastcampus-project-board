@@ -12,7 +12,7 @@
             </attr>
         </attr>
     </attr>
-
+    <attr sel="#humor-more" th:href="@{/articles/list(searchType='CATEGORY', searchValue='humor')}" />
     <attr sel="#politics-table">
         <attr sel="tbody" th:remove="all-but-first">
             <attr sel="tr[0]" th:each="article : ${politics}">

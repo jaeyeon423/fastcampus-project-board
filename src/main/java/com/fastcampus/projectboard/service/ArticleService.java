@@ -36,7 +36,6 @@ public class ArticleService {
             case CONTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
             case ID -> articleRepository.findByUserAccount_UserIdContaining(searchKeyword, pageable).map(ArticleDto::from);
             case NICKNAME -> articleRepository.findByUserAccount_NicknameContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case HASHTAG -> articleRepository.findByHashtagContaining(searchKeyword, pageable).map(ArticleDto::from);
             case CATEGORY -> articleRepository.findByCategoryContaining(searchKeyword, pageable).map(ArticleDto::from);
         };
     }
@@ -71,7 +70,7 @@ public class ArticleService {
                 if(articleDto.content() != null) {
                     article.setContent(articleDto.content());
                 }
-                article.setHashtag(articleDto.hashtag());
+//                article.setHashtag(articleDto.hashtag());
             }
         }catch (EntityNotFoundException e){
             log.warn("게시글 업데이트 실패 dto = {}", articleDto);
