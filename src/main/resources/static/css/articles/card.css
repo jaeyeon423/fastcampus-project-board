@@ -38,7 +38,7 @@ main {
 
 section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 3fr));
     grid-gap: 2rem;
 }
 

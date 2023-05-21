@@ -13,6 +13,7 @@
         </attr>
     </attr>
     <attr sel="#humor-more" th:href="@{/articles/list(searchType='CATEGORY', searchValue='humor')}" />
+
     <attr sel="#politics-table">
         <attr sel="tbody" th:remove="all-but-first">
             <attr sel="tr[0]" th:each="article : ${politics}">
@@ -21,6 +22,7 @@
             </attr>
         </attr>
     </attr>
+    <attr sel="#politics-more" th:href="@{/articles/list(searchType='CATEGORY', searchValue='politics')}" />
 
     <attr sel="#economy-table">
         <attr sel="tbody" th:remove="all-but-first">
@@ -30,6 +32,7 @@
             </attr>
         </attr>
     </attr>
+    <attr sel="#economy-more" th:href="@{/articles/list(searchType='CATEGORY', searchValue='economy')}" />
 
     <attr sel="#society-table">
         <attr sel="tbody" th:remove="all-but-first">
@@ -39,6 +42,7 @@
             </attr>
         </attr>
     </attr>
+    <attr sel="#society-more" th:href="@{/articles/list(searchType='CATEGORY', searchValue='society')}" />
 
     <attr sel="#sports-table">
         <attr sel="tbody" th:remove="all-but-first">
@@ -48,6 +52,7 @@
             </attr>
         </attr>
     </attr>
+    <attr sel="#sports-more" th:href="@{/articles/list(searchType='CATEGORY', searchValue='sports')}" />
 
     <attr sel="#entertainer-table">
         <attr sel="tbody" th:remove="all-but-first">
@@ -57,6 +62,7 @@
             </attr>
         </attr>
     </attr>
+    <attr sel="#entertainer-more" th:href="@{/articles/list(searchType='CATEGORY', searchValue='entertainer')}" />
 
 
 
