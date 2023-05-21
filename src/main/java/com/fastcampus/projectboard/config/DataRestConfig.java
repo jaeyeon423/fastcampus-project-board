@@ -8,6 +8,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 @Configuration
 public class DataRestConfig {
 
+    //Spring Data REST를 사용하여 UserAccount 엔티티의 ID를 노출하는 구성을 정의
     @Bean
     public RepositoryRestConfigurer repositoryRestConfigurer() {
         return RepositoryRestConfigurer.withConfig((config, cors) ->
