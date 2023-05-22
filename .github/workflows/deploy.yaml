@@ -24,7 +24,7 @@ jobs:
           java-version: 17
       
       - name: Grant excute permission for gradlew
-        run: chmod -X ./gradlew
+        run: chmod +x ./gradlew
         shell: bash
         
       - name: Build with Gradle
